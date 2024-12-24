@@ -23,7 +23,7 @@ jobs:
       # Step 3: Package the Helm chart
       - name: Package Helm chart
         run: |
-          helm package my-helm-chart
+          helm package .
           ls -lh  # List files to verify packaging
 
       # Step 4: Generate Helm repository index
