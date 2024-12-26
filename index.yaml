@@ -3,6 +3,16 @@ entries:
   dafolio:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-12-26T18:43:44.407998176Z"
+    description: A Helm chart for the DaFolio project containing front- and backend
+    digest: 6e9d1eb02a92225c586604c5509456b1ecd039b7cf87d25da3170bb15ffd4b46
+    name: dafolio
+    type: application
+    urls:
+    - https://github.com/dapetri/helm-charts/releases/download/dafolio-0.1.1/dafolio-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-12-24T15:43:16.280857238Z"
     description: A Helm chart for Kubernetes
     digest: a05913cc8d65e60264a98835cf8df89e37890eaf4a02a98e2325c38eb6142769
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/dapetri/dafolio-helm/releases/download/dafolio-0.1.0/dafolio-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-24T15:43:16.280868379Z"
+generated: "2024-12-26T18:43:44.40801103Z"
