@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: dafolio
-        image: {{ include "dafolio.generateFlavourImage" (dict "flavour" $.Values.images.flavour "image" .image) }}
+        image: {{ include "dafolio.generateFlavourImage" (dict "image" .image) }}
         ports:
         - containerPort: 80
           name: http

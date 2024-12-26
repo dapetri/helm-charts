@@ -55,5 +55,5 @@ Generate chart name and version.
 Generate chart name with flavour and version.
 */}}
 {{- define "dafolio.generateFlavourImage" -}}
-{{- printf "%s/%s:%s" .image.name .flavour .image.tag -}}
+{{- printf "%s:%s" .image.name .image.tag -}}
 {{- end -}}
