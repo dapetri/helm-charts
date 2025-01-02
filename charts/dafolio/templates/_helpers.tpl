@@ -45,6 +45,14 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
 
 {{/*
+Match labels
+*/}}
+{{- define "dafolio.matchLabels" -}}
+app.kubernetes.io/name: {{ include "dafolio.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end -}}
+
+{{/*
 Generate chart name and version.
 */}}
 {{- define "dafolio.generateImage" -}}
