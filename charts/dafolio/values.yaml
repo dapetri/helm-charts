@@ -7,6 +7,9 @@ images:
   pullSecret: 
   flavour: main
 
+ingressroute:
+  baseHost: dev.dapetri.com
+
 dafolio:
   image:
     name: ghcr.io/dapetri/dafolio
