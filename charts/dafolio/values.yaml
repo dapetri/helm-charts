@@ -13,6 +13,6 @@ ingressroute:
 dafolio:
   image:
     name: ghcr.io/dapetri/dafolio
-    tag: 0.1.3
+    tag: 0.1.4
   secrets: []
   configs: []
