@@ -8,7 +8,7 @@ images:
   flavour: main
 
 ingressroute:
-  baseHost: dev.dapetri.com
+  baseHost: dapetri.com
 
 dafolio:
   image:
