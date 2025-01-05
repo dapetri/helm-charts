@@ -19,4 +19,10 @@ To uninstall the chart:
 
     helm delete my-<chart-name>
 
+To upgrade the chart:
+
+    helm repo update
+    helm upgrade dafolio dapetri-charts/dafolio -n dafolio --version x.x.x
+
 Workflow follows description from: https://helm.sh/docs/howto/chart_releaser_action/
+
