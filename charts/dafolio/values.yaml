@@ -13,7 +13,7 @@ ingressroute:
 frontend:
   image:
     name: ghcr.io/dapetri/dafolio
-    tag: 0.1.5
+    tag: 0.1.6
   secrets: 
   - dafolio-frontend-secrets
   configs: []
