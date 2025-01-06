@@ -1,4 +1,4 @@
-{{- with .Values.dafolio }}
+{{- with .Values.frontend }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -13,10 +13,10 @@ spec:
     metadata:
       labels:
         {{- include "dafolio.labels" $ | nindent 8 }}
-        app.kubernetes.io/component: dafolio
+        app.kubernetes.io/component: frontend
     spec:
       containers:
-      - name: dafolio
+      - name: frontend
         image: {{ include "dafolio.generateFlavourImage" (dict "image" .image) }}
         ports:
         - containerPort: 80
@@ -48,7 +48,7 @@ metadata:
 spec:
   selector:
     app.kubernetes.io/name: {{ include "dafolio.name" $ }}
-    app.kubernetes.io/component: dafolio
+    app.kubernetes.io/component: frontend
   ports:
   - port: 80
     targetPort: 80

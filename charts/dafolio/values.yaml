@@ -10,9 +10,10 @@ images:
 ingressroute:
   baseHost: dapetri.com
 
-dafolio:
+frontend:
   image:
     name: ghcr.io/dapetri/dafolio
-    tag: 0.1.4
-  secrets: []
+    tag: 0.1.5
+  secrets: 
+  - dafolio-frontend-secrets
   configs: []
