@@ -1,0 +1,67 @@
+{{- with .Values.postgres }}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "dafolio.fullname" $ }}-postgres
+spec:
+  selector:
+    matchLabels:
+        {{- include "dafolio.labels" $ | nindent 8 }}
+  serviceName: {{ include "dafolio.fullname" $ }}-postgres-1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        {{- include "dafolio.labels" $ | nindent 8 }}
+        app.kubernetes.io/component: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: {{ include "dafolio.generateImage" .image }}
+        ports:
+        - containerPort: 5432
+          name: postgres
+          protocol: TCP
+        {{- with $.Values.persistence }}
+        {{- if .enabled }}
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+          subPath: postgres
+        {{- end }}
+        {{- end }}
+        {{- if gt (add (len .secrets) (len .configs)) 0 }}
+        envFrom:
+        {{- range .secrets }}
+        - secretRef:
+            name: {{ . | quote }}
+        {{- end }}
+        {{- range .configs }}
+        - configMapRef:
+            name: {{ . | quote }}
+        {{- end }}
+        {{- end }}
+      {{- with $.Values.persistence }}
+      {{- if .enabled }}
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ include "dafolio.fullname" $ }}-data
+      {{- end }}
+      {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dafolio.fullname" $ }}-postgres
+spec:
+  selector:
+    app.kubernetes.io/name: {{ include "dafolio.name" $ }}
+    app.kubernetes.io/component: postgres
+  ports:
+  - port: 5432
+    targetPort: 5432
+    name: postgres
+    protocol: TCP
+{{- end }}

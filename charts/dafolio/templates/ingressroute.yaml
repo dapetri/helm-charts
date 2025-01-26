@@ -14,5 +14,11 @@ spec:
     - name: {{ include "dafolio.fullname" $ }}-frontend
       port: 80
     priority: 10
+  - kind: Rule
+    match: (Host(`{{ .Values.ingressroute.baseHost }}`) || Host(`www.{{ .Values.ingressroute.baseHost }}`)) && (PathPrefix(`/api`))
+    services:
+    - name: {{ include "dafolio.fullname" $ }}-backend
+      port: 80
+    priority:  30
   tls:
     certResolver: http

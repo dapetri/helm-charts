@@ -1,0 +1,60 @@
+{{- with .Values.backend }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dafolio.fullname" $ }}-backend
+spec:
+  selector:
+    matchLabels:
+        {{- include "dafolio.labels" $ | nindent 8 }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        {{- include "dafolio.labels" $ | nindent 8 }}
+        app.kubernetes.io/component: backend
+    spec:
+      containers:
+      - name: backend
+        image: {{ include "dafolio.generateFlavourImage" (dict "image" .image) }}
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        # env:
+        #   - name: FLASK_APP
+        #     value: eventorga_backend_public_api.public_api:create_app()
+        {{- if gt (add (len .secrets) (len .configs)) 0 }}
+        envFrom:
+        {{- range .secrets }}
+        - secretRef:
+            name: {{ . | quote }}
+        {{- end }}
+        {{- range .configs }}
+        - configMapRef:
+            name: {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        resources:
+          requests:
+            cpu: 100m
+            memory: 250Mi
+          limits:
+            cpu: 200m
+            memory: 500Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dafolio.fullname" $ }}-backend
+spec:
+  selector:
+    app.kubernetes.io/name: {{ include "dafolio.name" $ }}
+    app.kubernetes.io/component: backend
+  ports:
+  - port: 80
+    targetPort: 80
+    name: http
+    protocol: TCP
+{{- end }}

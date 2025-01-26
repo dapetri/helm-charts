@@ -16,3 +16,19 @@ frontend:
     tag: 0.1.7
   secrets: []
   configs: []
+
+backend:
+  image:
+    name: ghcr.io/dapetri/dafolio-backend
+    tag: 0.1.0
+  secrets: 
+  - backend-secrets
+  configs: []
+
+# postgres:
+#   image:
+#     name: postgres
+#     tag: 12.2-alpine
+#   secrets:
+#   - postgres-secrets
+#   configs: []
