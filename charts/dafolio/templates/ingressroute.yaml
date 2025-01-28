@@ -15,7 +15,8 @@ spec:
       port: 80
     priority: 10
   - kind: Rule
-    match: (Host(`{{ .Values.ingressroute.baseHost }}`) || Host(`www.{{ .Values.ingressroute.baseHost }}`)) && (PathPrefix(`/api`))
+    match: Host(`api.{{ .Values.ingressroute.baseHost }}`) || Host(`www.api.{{ .Values.ingressroute.baseHost }}`)
+    # match: (Host(`{{ .Values.ingressroute.baseHost }}`) || Host(`www.{{ .Values.ingressroute.baseHost }}`)) && (PathPrefix(`/api`))
     services:
     - name: {{ include "dafolio.fullname" $ }}-backend
       port: 80
