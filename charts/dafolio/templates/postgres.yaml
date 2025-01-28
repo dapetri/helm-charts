@@ -42,6 +42,10 @@ spec:
             name: {{ . | quote }}
         {{- end }}
         {{- end }}
+        resources:
+          limits:
+            cpu: 200m
+            memory: 250Mi
       {{- with $.Values.persistence }}
       {{- if .enabled }}
       volumes:
@@ -50,10 +54,6 @@ spec:
           claimName: {{ include "dafolio.fullname" $ }}-data
       {{- end }}
       {{- end }}
-        resources:
-          limits:
-            cpu: 200m
-            memory: 250Mi
 ---
 apiVersion: v1
 kind: Service
