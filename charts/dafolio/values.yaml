@@ -1,5 +1,5 @@
 persistence:
-  enabled: false #TODO change to true
+  enabled: true
   size: 1Gi
   accessMode: ReadWriteOnce
 
