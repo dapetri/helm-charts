@@ -22,6 +22,9 @@ spec:
         - containerPort: 80
           name: http
           protocol: TCP
+        env:
+          - name: DB_USER
+            value: eventorga_backend_public_api.public_api:create_app()
         # env:
         #   - name: FLASK_APP
         #     value: eventorga_backend_public_api.public_api:create_app()
@@ -38,11 +41,11 @@ spec:
         {{- end }}
         resources:
           requests:
-            cpu: 100m
-            memory: 250Mi
+            cpu: 1000m
+            memory: 256Mi
           limits:
-            cpu: 200m
-            memory: 500Mi
+            cpu: 1500m
+            memory: 356Mi
       {{- with $.Values.persistence }}
       {{- if .enabled }}
       volumes:
