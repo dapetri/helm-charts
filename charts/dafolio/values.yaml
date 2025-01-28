@@ -20,9 +20,10 @@ frontend:
 backend:
   image:
     name: ghcr.io/dapetri/dafolio-backend
-    tag: 0.1.0
+    tag: 0.1.1
   secrets: 
   - backend-secrets
+  - postgres-secrets
   configs: []
 
 postgres:
