@@ -22,12 +22,6 @@ spec:
         - containerPort: 8000
           name: http
           protocol: TCP
-        env:
-          - name: DB_USER
-            value: eventorga_backend_public_api.public_api:create_app()
-        # env:
-        #   - name: FLASK_APP
-        #     value: eventorga_backend_public_api.public_api:create_app()
         {{- if gt (add (len .secrets) (len .configs)) 0 }}
         envFrom:
         {{- range .secrets }}
@@ -42,18 +36,10 @@ spec:
         resources:
           requests:
             cpu: 1000m
-            memory: 256Mi
+            memory: 200Mi
           limits:
             cpu: 1500m
             memory: 400i
-      {{- with $.Values.persistence }}
-      {{- if .enabled }}
-      volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: {{ include "dafolio.fullname" $ }}-data-lh
-      {{- end }}
-      {{- end }}
 ---
 apiVersion: v1
 kind: Service

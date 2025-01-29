@@ -4,50 +4,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "dafolio.fullname" $ }}-backup
-  annotations:
-    helm.sh/resource-policy: keep
-  labels:
-    {{- include "dafolio.labels" $ | nindent 4 }}
-spec:
-  resources:
-    requests:
-      storage: 10Gi
-  volumeMode: Filesystem
-  volumeName: pv-smb-dafolio-backup # hetzner-storagebox-pv
-  storageClassName: 'smb'
-  accessModes:
-  - ReadWriteMany
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: {{ include "dafolio.fullname" $ }}-data-lh
-  annotations:
-    helm.sh/resource-policy: keep
-  labels:
-    {{- include "dafolio.labels" $ | nindent 4 }}
-    recurring-job.longhorn.io/source: enabled
-    recurring-job-group.longhorn.io/low-prio: enabled
-spec:
-  resources:
-    requests:
-      storage: 1Gi
-  volumeMode: Filesystem
-  storageClassName: longhorn-crypto-global
-  accessModes:
-  - ReadWriteMany
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
   name: {{ include "dafolio.fullname" $ }}-db-lh
   annotations:
     helm.sh/resource-policy: keep
   labels:
     {{- include "dafolio.labels" $ | nindent 4 }}
     recurring-job.longhorn.io/source: enabled
-    recurring-job-group.longhorn.io/high-prio: enabled
+    recurring-job-group.longhorn.io/low-prio: enabled
 spec:
   accessModes:
     - ReadWriteOnce

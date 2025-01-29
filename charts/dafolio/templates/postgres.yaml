@@ -51,7 +51,7 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: {{ include "dafolio.fullname" $ }}-data
+          claimName: {{ include "dafolio.fullname" $ }}-db-lh
       {{- end }}
       {{- end }}
 ---
