@@ -8,6 +8,7 @@ spec:
   selector:
     matchLabels:
         {{- include "dafolio.matchLabels" $ | nindent 8 }}
+        app.kubernetes.io/component: frontend
   replicas: 1
   template:
     metadata:
@@ -35,8 +36,8 @@ spec:
         {{- end }}
         resources:
           limits:
-            cpu: 50m
-            memory: 50Mi
+            cpu: 100m
+            memory: 200Mi
 ---
 apiVersion: v1
 kind: Service

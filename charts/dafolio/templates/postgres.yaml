@@ -8,6 +8,7 @@ spec:
   selector:
     matchLabels:
         {{- include "dafolio.matchLabels" $ | nindent 8 }}
+        app.kubernetes.io/component: postgres
   serviceName: {{ include "dafolio.fullname" $ }}-postgres-1
   replicas: 1
   template:
