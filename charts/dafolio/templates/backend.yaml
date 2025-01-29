@@ -45,7 +45,7 @@ spec:
             memory: 256Mi
           limits:
             cpu: 1500m
-            memory: 356Mi
+            memory: 400i
       {{- with $.Values.persistence }}
       {{- if .enabled }}
       volumes:

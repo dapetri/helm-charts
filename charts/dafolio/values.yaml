@@ -1,5 +1,5 @@
 persistence:
-  enabled: false
+  enabled: true
   size: 1Gi
   accessMode: ReadWriteOnce
 
@@ -20,7 +20,7 @@ frontend:
 backend:
   image:
     name: ghcr.io/dapetri/dafolio-backend
-    tag: 0.1.1
+    tag: 0.1.2
   secrets: 
   - backend-secrets
   - postgres-secrets
