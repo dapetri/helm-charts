@@ -26,3 +26,8 @@ To upgrade the chart:
 
 Workflow follows description from: https://helm.sh/docs/howto/chart_releaser_action/
 
+
+Or do:
+
+    helm upgrade -n dafolio -f charts/dafolio/values.yaml dafolio ./charts/dafolio 
+
